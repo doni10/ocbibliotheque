@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar>
+      <ion-buttons>
+        <button ion-button clear (click)="dismissModal()">Fermer</button>
+      </ion-buttons>
+      <ion-title>{{ cd.title }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-card>
+      <ion-card-header>{{ cd.title }}</ion-card-header>
+      <ion-card-content>
+        <p *ngFor="let line of cd.description">{{ line }}</p>
+        <h4 *ngIf = "cd.isLend">nom de l'emprunteur: {{ cd.nomEmprunteur }}</h4>
+      </ion-card-content>
+      <form [formGroup]="lendForm" >
+        <ion-item  *ngIf="!cd.isLend">
+          <ion-input placeholder="Nom emprunteur" formControlName="nomEmprunteur" ></ion-input>  
+        </ion-item>
+      </form>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <button
+              ion-button
+              full
+              color="danger"
+              [disabled]="cd.isLend"
+              (click)="onLendCd()">Prêter</button>
+          </ion-col>
+          <ion-col>
+            <button
+              ion-button
+              full
+              color="secondary"
+              [disabled]="!cd.isLend"
+              (click)="onReturnCd()">Rendre</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button
+              ion-button
+              full
+              color="primary"
+              (click)="onValidate()">Valider</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-content>
+  

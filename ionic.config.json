@@ -1,0 +1,7 @@
+{
+  "name": "projet-bibliothèque",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

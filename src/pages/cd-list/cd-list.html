@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cds</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="onToggleMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item
+            icon-start
+            *ngFor="let cd of cdsList; let i = index"
+            (click)="onLoadCd(i)"
+            [ngClass]="{'is-lend': cd.isLend, 'is-rendered': !cd.isLend }">
+          <ion-icon name="share-alt" [color]="cd.isLend ? 'danger' : 'secondary'"></ion-icon> 
+          {{ cd.title }}
+          <br>
+          {{ cd.nomEmprunteur }}
+    </button>
+  </ion-list>
+</ion-content>

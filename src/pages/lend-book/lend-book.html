@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button clear (click)="dismissModal()">Fermer</button>
+    </ion-buttons>
+    <ion-title>{{ book.title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>{{ book.title }}</ion-card-header>
+    <ion-card-content>
+      <p *ngFor="let line of book.description">{{ line }}</p>
+      <h4 *ngIf = "book.isLend">nom de l'emprunteur: {{ book.nomEmprunteur }}</h4>
+    </ion-card-content>
+    <form [formGroup]="lendForm" >
+      <ion-item *ngIf="!book.isLend">
+        <ion-input placeholder="Nom emprunteur" formControlName="nomEmprunteur" ></ion-input>  
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <button
+              ion-button
+              full
+              color="danger"
+              [disabled]="book.isLend"
+              (click)="onLendBook()">Prêter</button>
+          </ion-col>
+          <ion-col>
+            <button
+              ion-button
+              full
+              color="secondary"
+              [disabled]="!book.isLend"
+              (click)="onReturnBook()">Rendre</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <button
+              ion-button
+              full
+              color="primary"
+              (click)="onValidate()">Valider</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card>
+</ion-content>

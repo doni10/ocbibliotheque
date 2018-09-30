@@ -1,0 +1,17 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>settings</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="onToggleMenu()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <button ion-button full (click)="onSend()" [disabled]="!notEmpty">Envoyer vers le backend</button>
+    <button ion-button full (click)="onReceive()">Recevoir du backend</button>
+</ion-content>
